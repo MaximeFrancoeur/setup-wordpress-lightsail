@@ -1,6 +1,6 @@
 
 # setup-wordpress-lightsail
-How setup a Wordpress on AWS Lightsail
+How setup a Wordpress on AWS Lightsail and setup send mail.
 
 
 1. Create new instance on AWS Lightsail
@@ -18,15 +18,15 @@ SSLCertificateFile "/etc/letsencrypt/live/DOMAIN.COM/cert.pem"
 SSLCertificateKeyFile "/etc/letsencrypt/live/DOMAIN.COM/privkey.pem"
 SSLCertificateChainFile "/etc/letsencrypt/live/DOMAIN.COM/fullchain.pem"
 ```
-9. Activer l'auto renew de certbit si pas deja fait
-10. setup le HTTPS only de Wordpress : sudo nano /opt/bitnami/apps/wordpress/conf/httpd-prefix.conf
-11. Ajouter ceci en haut de `httpd.prefix.conf` : 
+9. Activer l'auto renew de certbit si pas deja fait : `sudo certbot renew --dry-run`
+10. Only only HTTPS for Wordpress : `sudo nano /opt/bitnami/apps/wordpress/conf/httpd-prefix.conf`
+11. In the file add this code on the top : 
 ```
 RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule ^/(.*) https://www.CHANGE_ME_WITH_DOMAIN.COM/$1 [R,L]
 ```
-12. Restart apache, httpd... : `sudo /opt/bitnami/ctlscript.sh restart`
+12. Restart all services like apache and httpd : `sudo /opt/bitnami/ctlscript.sh restart`
 13. Aller sur le site pour voir que le HTTPS fonctionne bien
 14. Installer le plugin WP SMTP Mail parce que les instance Lightsail ne peux send de email.
 15. Aller dans setting -> WP SMTP Mail pour configurer. Tuto de Bitnami -> https://docs.bitnami.com/aws/apps/wordpress/#how-to-configure-outbound-email-settings
