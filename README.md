@@ -9,8 +9,8 @@ How setup a Wordpress on AWS Lightsail
 4. Create DNS zone or Create rule A in DNS to point static IP
 5. After Domain is setup, Aller sur le site avec le domain pour migrer avec All-in One migration
 6. Create SSL Certificat avec Letsencrypt : https://certbot.eff.org/
-  `folder du wordpress pour le certificat : /home/bitnami/apps/wordpress/htdocs`
-7. Edit Apache2 bitnami config pour setup le certificat de Letsencrypt : 
+  > folder du wordpress pour le certificat : `/home/bitnami/apps/wordpress/htdocs`
+7. Edit  the Apache2 config pour setup le certificat de Letsencrypt : 
  `sudo nano /home/bitnami/stack/apache2/conf/bitnami/bitnami.conf`
 8. Ligne a changer ou a ajouter : 
 ```
